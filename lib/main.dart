@@ -398,93 +398,120 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.grey[50],
-        child: Center( // Membungkus seluruh konten dengan Center
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF6A1B9A),
+              Color(0xFF9C27B0),
+              Color(0xFFCE93D8),
+            ],
+          ),
+        ),
+        child: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Memastikan elemen berada di tengah
-              crossAxisAlignment: CrossAxisAlignment.center, // Memastikan elemen sejajar di tengah secara horizontal
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Header dengan gradient
+                // Foto profil dengan border dan shadow
                 Container(
-                  height: 200,
+                  margin: const EdgeInsets.only(top: 40, bottom: 16),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.blue[400]!,
-                        Colors.blue[800]!,
-                      ],
-                    ),
-                  ),
-                  child: SafeArea(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 2),
-                            ),
-                            child: const CircleAvatar(
-                              radius: 50,
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.person,
-                                size: 50,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          const Text(
-                            'Julian Maem',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 16,
+                        offset: const Offset(0, 8),
                       ),
+                    ],
+                    border: Border.all(color: Colors.white, width: 4),
+                  ),
+                  child: const CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 100,
+                      color: Color(0xFF6A1B9A),
                     ),
                   ),
                 ),
-                // Profile cards
+                const SizedBox(height: 8),
+                // Nama
+                const Text(
+                  'Rehan',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                // Email
+                const Text(
+                  'raihan@gmail.com',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // Card info
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
                     children: [
                       _buildProfileCard(
                         icon: Icons.person_outline,
                         title: 'Username',
-                        subtitle: '@julianjihan',
-                        iconColor: Colors.blue,
+                        subtitle: '@rehan',
+                        iconColor: Color(0xFF6A1B9A),
                       ),
                       _buildProfileCard(
                         icon: Icons.email_outlined,
                         title: 'Email',
-                        subtitle: 'julianjihan@gmail.com',
-                        iconColor: Colors.green,
+                        subtitle: 'raihan@gmail.com',
+                        iconColor: Color(0xFF9C27B0),
                       ),
                       _buildProfileCard(
                         icon: Icons.phone_outlined,
                         title: 'Nomor Telepon',
-                        subtitle: '+62 123 4567 8900',
-                        iconColor: Colors.orange,
+                        subtitle: '+62 812 3456 7890',
+                        iconColor: Color(0xFFCE93D8),
                       ),
                       _buildProfileCard(
                         icon: Icons.location_on_outlined,
                         title: 'Lokasi',
-                        subtitle: 'Pandak, DIY, Indonesia',
-                        iconColor: Colors.red,
+                        subtitle: 'Kepuh',
+                        iconColor: Color(0xFF6A1B9A),
                       ),
                     ],
                   ),
                 ),
+                const SizedBox(height: 32),
+                // Tombol logout (contoh tambahan)
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF6A1B9A),
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 4,
+                  ),
+                  onPressed: () {},
+                  icon: const Icon(Icons.logout),
+                  label: const Text(
+                    'Keluar',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -500,37 +527,37 @@ class ProfilePage extends StatelessWidget {
     required Color iconColor,
   }) {
     return Card(
-      elevation: 2,
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      elevation: 3,
+      margin: const EdgeInsets.symmetric(vertical: 10),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: const EdgeInsets.all(18),
         leading: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(8),
+            color: iconColor.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Icon(
             icon,
             color: iconColor,
-            size: 28,
+            size: 30,
           ),
         ),
         title: Text(
           title,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 17,
           ),
         ),
         subtitle: Text(
           subtitle,
           style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 14,
+            color: Colors.grey[700],
+            fontSize: 15,
           ),
         ),
       ),
